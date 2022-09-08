@@ -1,5 +1,13 @@
 # Hate crime detection and entity extraction
 
+---
+# 추가해야 할 것
+
+- embeddings 폴더 추가 후, glove.300.txt(인터넷에서 받아야함)파일을 embedding 폴더에 넣기.
+- model/hate/MICNN 폴더 만들어주기.
+
+---
+
 This repo contains code and data for the following paper:
 ["Reporting the unreported: Event Extraction for Analyzing the Local Representation of Hate Crimes". EMNLP 2019](https://arxiv.org/pdf/1909.02126.pdf)
 
