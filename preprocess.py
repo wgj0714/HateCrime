@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 
 def GenerateUnlabeled(vocabs, batch_size, dataset):
     print("Loading the unlabeled dataset")
-    patch = pd.read_csv("Data/patch_more3.csv")
+    patch = pd.read_csv("Data/patch_more3.csv", encoding = "unicode_escape")
 
     print("Unlabeled set shape:", patch.shape)
 

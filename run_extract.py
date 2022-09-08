@@ -21,7 +21,8 @@ def _load_unlabeled(params, args, vocabs):
     if args.goal != "train":
         if os.path.isfile("Data/" + args.dataset + "/predict.pkl"):
             print("Loading unlabeled patch batches")
-            unlabeled_batches = pickle.load(open("Data/" + args.dataset + "/predict.pkl", "rb"))
+            unlabeled_batches = pickle.load(open("Data/" + args.dataset + "/predict.pkl", "rb")) 
+            # article, sent_length, length, preds_info: (hp, ip, i)
         else:
             print("Batching unlabeled patch data")
             unlabeled_batches = GenerateUnlabeled(vocabs, params["batch_size"], args.dataset)
@@ -32,13 +33,13 @@ def _load_unlabeled(params, args, vocabs):
 
 def _extract(params, data):
     train_batches, dev_batches, test_batches, vocabs, embedding = data
-    hate_train_batches = [train for train in train_batches if train["labels"] == 1]
+    hate_train_batches = [train for train in train_batches if train["labels"] == 1]   # 혐오 범죄에서만 배치 셋 가져오기.
     hate_dev_batches = [dev for dev in dev_batches if dev["labels"] == 1]
     hate_test_batches = [test for test in test_batches if test["labels"] == 1]
 
-    t_weights = np.array([1 - (Counter([train["target_label"] for train in hate_train_batches])[i] /
+    t_weights = np.array([1 - (Counter([train["target_label"] for train in hate_train_batches])[i] / # target label을 가져오기
                                len(hate_train_batches)) for i in range(8)])
-    a_weights = np.array([1 - (Counter([train["action_label"] for train in hate_train_batches])[i] /
+    a_weights = np.array([1 - (Counter([train["action_label"] for train in hate_train_batches])[i] / # action label을 가져오기
                                len(hate_train_batches)) for i in range(4)])
     entity = Entity(params, vocabs, embedding)
     entity.build()
@@ -58,7 +59,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     parser.add_argument("--goal", help="Goal can be either train or predict")
-    parser.add_argument("--params", help="Path to the params file, a json file "
+    parser.add_argument("--params", help="Path to the params file, a json file")
+    parser.add_argument("--dataset", help="Dataset is either hate, homicide or kidnap"
                                          "that contains model parameters")
     args = parser.parse_args()
 

@@ -59,7 +59,13 @@ def _detect(params, data):
         for i in range(len(unlabeled_batches)):
             if hate_pred[i] == 1:
                 if args.model == "MICNN":
-                    hate_batches.append(unlabeled_batches[i] + (hate_pred[i], indice_pred[i], i))
+                    new_un_batch = unlabeled_batches[i]
+                    #new_un_batch['preds_info'] = (hate_pred[i], indice_pred[i], i)
+                    new_un_batch['hate_pred'] = hate_pred[i]
+                    new_un_batch['best_sent'] = indice_pred[i]
+                    new_un_batch['article_num'] = i + 1
+                    # hate_batches.append(unlabeled_batches[i] + (hate_pred[i], indice_pred[i], i))
+                    hate_batches.append(new_un_batch)
                 else:
                     hate_batches.append(unlabeled_batches[i] + (hate_pred[i], i))
         pickle.dump(hate_batches, open("Data/" + args.dataset + "/predict.pkl", "wb"))

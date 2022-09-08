@@ -38,7 +38,7 @@ The parameters are defined as following:
   "embedding_size": 300 # size of the embedding
   "learning_rate": 0.00001 # learning rate for the detect task
   "keep_ratio": 0.75 # keep ratio for the detect task
-  "epochs": 30 # number of epochs
+  "epochs": 2 # number of epochs
   "entity_keep_ratio": 0.75 # keep ratio in extract task
   "entity_learning_rate": 0.001 # learning rate in extract task
   "batch_size": 5 # size of batches, shows the number of articles in each batch
@@ -49,7 +49,7 @@ The parameters are defined as following:
 In order to run the detection code, use the following script:
 
 `python3 run_detect.py --model <MODEL_NAME> --goal <GOAL> --dataset <DATASET> --params <PARAMS_FILE>`
-
+"python run_detect.py --model MICNN --goal train --dataset hate --params params.json"
 substitude the following tokens according to the task in mind:
 
 - `<MODEL_NAME>`: you can either use `MICNN` (the model used in the paper) or `ATTN` (the hierarchical attention baseline)

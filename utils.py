@@ -17,7 +17,7 @@ def get_vocabs(df):
 
 def read_embedding(vocab):
     # reads an embedding file and return a dictionary of word: vector
-    with open("embeddings/glove.300.txt", 'r') as file:
+    with open("embeddings/glove.300.txt", 'r', encoding = 'utf8') as file:
         vectors = dict()
         for line in file:
             tokens = line.split()

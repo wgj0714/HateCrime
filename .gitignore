@@ -33,3 +33,4 @@ Data/*/*.pkl
 *.csv
 model/hate/MICNN/
 model/Entity/
+embeddings/
